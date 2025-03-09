@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Leaf, BarChart3, Recycle, Route, Truck, Clock, Shield, Database } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { BarChart3, Clock, Database, Route, Shield, Truck } from "lucide-react";
+import Link from "next/link";
 
 export default function Features() {
   return (
@@ -11,7 +11,7 @@ export default function Features() {
         <h1 className="text-4xl font-bold text-center text-green-800 dark:text-green-100 mb-12">
           Features that Transform Waste Management
         </h1>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           <FeatureCard
             icon={<BarChart3 className="h-12 w-12 text-green-600" />}

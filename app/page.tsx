@@ -1,64 +1,11 @@
-"use client"
-
-import { useState } from "react";
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Leaf, BarChart3, Recycle, ArrowRight, Menu, X } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { ArrowRight, BarChart3, Leaf, Recycle } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false); // State to manage the mobile menu
-
-  // Toggle menu visibility
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-green-950 dark:to-background">
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-green-600 dark:text-green-400" />
-            <span className="text-2xl font-bold text-green-800 dark:text-green-100">Təmİzləyici</span>
-          </Link>
-
-          {/* Burger Icon for Mobile */}
-          <button
-            className="md:hidden p-2"
-            onClick={toggleMenu}
-          >
-            {menuOpen ? (
-              <X className="h-6 w-6 text-green-600 dark:text-green-400" />
-            ) : (
-              <Menu className="h-6 w-6 text-green-600 dark:text-green-400" />
-            )}
-          </button>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link href="/features">
-              <Button variant="ghost">Features</Button>
-            </Link>
-            <Link href="/about">
-              <Button variant="ghost">About</Button>
-            </Link>
-            <Link href="/download">
-              <Button variant="ghost">Download</Button>
-            </Link>
-            <ModeToggle />
-          </div>
-        </nav>
-      </header>
-
-      {/* Mobile Menu */}
-      <div className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
-        <div className="flex flex-col items-center space-y-4 py-4">
-          <Link href="/features" className="text-lg text-green-800 dark:text-green-100">Features</Link>
-          <Link href="/about" className="text-lg text-green-800 dark:text-green-100">About</Link>
-          <Link href="/download" className="text-lg text-green-800 dark:text-green-100">Download</Link>
-          <ModeToggle />
-        </div>
-      </div>
-
       <main>
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-20 text-center">
@@ -118,41 +65,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="bg-green-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-            <div>
-              <h3 className="text-lg font-bold mb-4">Təmİzləyici</h3>
-              <p className="text-green-100">Smart waste management solutions for a sustainable future.</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Features</h4>
-              <ul className="space-y-2">
-                <li><Link href="/features" className="hover:text-green-300">Analytics</Link></li>
-                <li><Link href="/features" className="hover:text-green-300">Route Optimization</Link></li>
-                <li><Link href="/features" className="hover:text-green-300">Waste Sorting</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><Link href="/about" className="hover:text-green-300">About Us</Link></li>
-                <li><Link href="/about" className="hover:text-green-300">Careers</Link></li>
-                <li><Link href="/download" className="hover:text-green-300">Download</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Connect</h4>
-              <ul className="space-y-2">
-                <li><a href="https://twitter.com" className="hover:text-green-300">Twitter</a></li>
-                <li><a href="https://linkedin.com" className="hover:text-green-300">LinkedIn</a></li>
-                <li><a href="https://facebook.com" className="hover:text-green-300">Facebook</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
