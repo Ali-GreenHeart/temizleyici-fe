@@ -1,11 +1,17 @@
 "use client"
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Leaf, BarChart3, Recycle, ArrowRight } from "lucide-react"
+import { Leaf, BarChart3, Recycle, ArrowRight, Menu, X } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false); // State to manage the mobile menu
+
+  // Toggle menu visibility
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-green-950 dark:to-background">
       <header className="container mx-auto px-4 py-6">
@@ -14,7 +20,21 @@ export default function Home() {
             <Leaf className="h-8 w-8 text-green-600 dark:text-green-400" />
             <span className="text-2xl font-bold text-green-800 dark:text-green-100">Təmİzləyici</span>
           </Link>
-          <div className="flex items-center space-x-4">
+
+          {/* Burger Icon for Mobile */}
+          <button
+            className="md:hidden p-2"
+            onClick={toggleMenu}
+          >
+            {menuOpen ? (
+              <X className="h-6 w-6 text-green-600 dark:text-green-400" />
+            ) : (
+              <Menu className="h-6 w-6 text-green-600 dark:text-green-400" />
+            )}
+          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link href="/features">
               <Button variant="ghost">Features</Button>
             </Link>
@@ -29,6 +49,16 @@ export default function Home() {
         </nav>
       </header>
 
+      {/* Mobile Menu */}
+      <div className={`md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
+        <div className="flex flex-col items-center space-y-4 py-4">
+          <Link href="/features" className="text-lg text-green-800 dark:text-green-100">Features</Link>
+          <Link href="/about" className="text-lg text-green-800 dark:text-green-100">About</Link>
+          <Link href="/download" className="text-lg text-green-800 dark:text-green-100">Download</Link>
+          <ModeToggle />
+        </div>
+      </div>
+
       <main>
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-20 text-center">
@@ -36,7 +66,7 @@ export default function Home() {
             Smart Waste Management<br />for a Cleaner Tomorrow
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-            Transform your waste management system with real-time tracking, analytics, and optimization. 
+            Transform your waste management system with real-time tracking, analytics, and optimization.
             Make your city cleaner and more sustainable.
           </p>
           <div className="flex justify-center space-x-4">
@@ -59,17 +89,17 @@ export default function Home() {
             Key Features
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <FeatureCard 
+            <FeatureCard
               icon={<BarChart3 className="h-10 w-10 text-green-600" />}
               title="Real-time Analytics"
               description="Track waste collection patterns and optimize routes with powerful analytics."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Recycle className="h-10 w-10 text-green-600" />}
               title="Smart Sorting"
               description="Automatic waste classification and sorting recommendations."
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Leaf className="h-10 w-10 text-green-600" />}
               title="Eco-friendly"
               description="Reduce carbon footprint with optimized collection routes."
